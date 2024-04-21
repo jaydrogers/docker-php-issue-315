@@ -1,0 +1,6 @@
+services:
+
+  php:
+    build:
+      context: .
+      target: base

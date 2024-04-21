@@ -1,0 +1,27 @@
+services:
+  php:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+      target: production
+    container_name: pix-api
+    restart: unless-stopped
+    environment:
+      PHP_FPM_POOL_NAME: "pixsell_api"
+      AUTORUN_ENABLED: "false"
+      AUTORUN_LARAVEL_ROUTE_CACHE: "false"
+      AUTORUN_LARAVEL_VIEW_CACHE: "false"
+      AUTORUN_LARAVEL_CONFIG_CACHE: "false"
+      AUTORUN_LARAVEL_EVENT_CACHE: "false"
+      PHP_DATE_TIMEZONE: "Europe/Paris"
+      PHP_DISPLAY_ERROR: "On"
+      PHP_DISPLAY_STARTUP_ERRORS: "On"
+      PHP_ERROR_REPORTING: "32767"
+      PHP_MEMORY_LIMIT: "4G"
+    ports:
+      - "8000:8080"
+    networks:
+      - production
+
+networks:
+  production:
